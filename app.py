@@ -26,6 +26,7 @@ def callback():
         abort(400)
 
     return 'OK'
+
 def generate_response(prompt, role="user"):
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -65,4 +66,5 @@ def handle_message(event):
     # )
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
